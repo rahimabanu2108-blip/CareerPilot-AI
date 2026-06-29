@@ -1,13 +1,21 @@
+import os
+from dotenv import load_dotenv
 import google.generativeai as genai
 
-genai.configure(api_key="AQ.Ab8RN6I_ZVDbfsZEsA9lXbhqwSbab-Gu1HojjrCdCqDIgY0X2Q")
+# Load environment variables from .env
+load_dotenv()
 
+# Configure Gemini API
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# Load Gemini model
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 def analyze_resume(text):
-
     prompt = f"""
-    Analyze this resume and provide:
+    You are an expert resume analyzer and career advisor.
+
+    Analyze the following resume and provide:
 
     1. Skills
     2. Education
